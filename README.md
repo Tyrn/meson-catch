@@ -1,5 +1,7 @@
 ## A library built with meson and tested with Catch2
 
+- [From this CMake build](https://codeberg.org/tpedu/hello-catch2-cmake)
+
 ### Build and run
 
 - Do it once:
