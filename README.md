@@ -6,8 +6,12 @@
 ```
 $ meson setup build
 ```
-- On a change (compile not strictly necessary):
+- On a change (`compile` not strictly necessary):
 ```
 $ meson compile -C build
 $ meson test -vC build
+```
+- Format the sources whenever you want:
+```
+$ ./fmt
 ```
