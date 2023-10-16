@@ -1,11 +1,18 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python
 
-# list of directories to format
-directories=("src" "tests")
+import os
+import subprocess
+import sys
+from pathlib import Path
 
-# loop over directories
-for dir in "${directories[@]}"; do
-  # find all .cpp and .h files in the directory and its subdirectories
-  find "$dir" \( -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \) -exec clang-format -i {} \;
-done
+SRC_DIRS = ("src", "tests")
+EXTENSIONS = (".C", ".CC", ".CPP", ".H", ".HH", ".HPP")
 
+for dir in SRC_DIRS:
+    for root, _, files in os.walk(Path(dir).resolve()):
+        for name in files:
+            if Path(name).suffix.upper() in EXTENSIONS:
+                target = Path(root) / name
+                subprocess.run(["clang-format", "-i", target])
+                if len(sys.argv) > 1 and sys.argv[1] == "-v":
+                    print(target.relative_to(os.getcwd()))

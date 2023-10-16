@@ -1,1 +1,12 @@
 /build/
+__pycache__/
+__pypackages__/
+
+# IDE
+*.vim
+.nvimlog
+*.geany
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
